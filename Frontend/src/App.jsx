@@ -7,8 +7,8 @@ import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
-import HomePage from "./pages/home/HomePage";
-import ContactPage from "./pages/contact/ContactPage";
+import HomePage from "./pages/Home/HomePage";
+import ContactPage from "./pages/Contact/ContactPage";
 
 // Core Modules
 import MedicinesPage from "./pages/medicines/MedicinesPage";
@@ -17,7 +17,7 @@ import TrackerPage from "./pages/tracker/TrackerPage";
 import EmergencyPage from "./pages/emergency/EmergencyPage";
 
 // User Pages
-import ProfilePage from "./pages/profile/ProfilePage";
+import ProfilePage from "./pages/Profile/ProfilePage";
 import Settings from "./pages/settings/Settings";
 
 // Dashboards
@@ -122,47 +122,6 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            {/* 
-            <Route
-              path="/orders"
-              element={
-                <ProtectedRoute user={user}>
-                  <OrdersPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/order/:id"
-              element={
-                <ProtectedRoute user={user}>
-                  <OrderDetailPage />
-                </ProtectedRoute>
-              }
-            /> */}
-            {/* Doctor Pages */}
-            {/* <Route path="/doctors" element={<DoctorsListPage />} />
-            <Route path="/doctor/:id" element={<DoctorDetailPage />} /> */}
-            {/* Pharmacy Pages */}
-            {/* <Route path="/pharmacies" element={<PharmaciesListPage />} />
-            <Route path="/pharmacy/:id" element={<PharmacyDetailPage />} /> */}
-            {/* Doctor Dashboard */}
-            {/* <Route
-              path="/doctor/dashboard"
-              element={
-                <ProtectedRoute user={user} role="doctor">
-                  <DoctorDashboard />
-                </ProtectedRoute>
-              }
-            /> */}
-            {/* Pharmacy Dashboard */}
-            {/* <Route
-              path="/pharmacy/dashboard"
-              element={
-                <ProtectedRoute user={user} role="pharmacy">
-                  <PharmacyDashboard />
-                </ProtectedRoute>
-              }
-            /> */}
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
