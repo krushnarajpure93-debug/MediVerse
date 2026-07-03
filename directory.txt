@@ -1,0 +1,175 @@
+AIPP/
+│
+|   ├── backend/
+│   │
+│   ├── config/
+│   │   ├── db.js
+│   │   └── env.js
+│   │
+│   ├── models/
+│   │   ├── User.model.js
+│   │   ├── RoleRequest.model.js
+│   │   ├── Doctor.model.js
+│   │   ├── Pharmacy.model.js
+│   │   ├── Order.model.js
+│   │   ├── Appointment.model.js
+│   │   └── HealthRecord.model.js
+│   │
+│   ├── controllers/
+│   │   ├── auth.controller.js
+│   │   ├── admin.controller.js
+│   │   ├── appointment.controller.js
+│   │   ├── user.controller.js
+│   │   ├── doctor.controller.js
+│   │   ├── pharmacy.controller.js
+│   │   ├── prescription.controller.js
+│   │   ├── roleRequest.controller.js
+│   │   ├── medicine.controller.js
+│   │   ├── order.controller.js
+│   │   └── emergency.controller.js
+│   │
+│   │
+│   ├── routes/
+│   │   ├── auth.routes.js
+│   │   ├── Appointment.routes.js
+│   │   ├── admin.routes.js
+│   │   ├── user.routes.js
+│   │   ├── doctor.routes.js
+│   │   ├── pharmacy.routes.js
+│   │   ├── medicine.routes.js
+│   │   ├── prescription.routes.js
+│   │   ├── order.routes.js
+│   │   └── emergency.routes.js
+│   │
+│   ├── middlewares/
+│   │   ├── auth.middleware.js
+│   │   ├── role.middleware.js
+│   │   └── error.middleware.js
+│   │
+│   ├── utils/
+│   │   ├── generateToken.js
+│   │   ├── sendEmail.js
+│   │   └── asyncHandler.js
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── package.json
+├── .env
+└── README.md
+|   
+│
+├── frontend/
+│   ├── node_modules/
+│   ├── public/
+│   │   |── images/
+│   │   └── videos/
+│   │
+│   ├── src/
+│   │   ├── api/
+│   │   │   ├── axios.js
+│   │   │   └── mockData.js
+│   │   │
+│   │   ├── components/
+│   │   │   ├── common/
+│   │   │   │   ├── Navbar.jsx
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   ├── Avatar.jsx
+│   │   │   │   ├── Loader.jsx
+│   │   │   │   ├── ProtectedRoute.jsx
+│   │   │   │   └── CallToAction.jsx
+│   │   │   │
+│   │   │   └── dashboard/
+│   │   │       └── DashboardCard.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── home/
+│   │   │   │   ├── EmergencyBanner.jsx
+│   │   │   │   ├── HealthTrackerPreview.jsx
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   ├── HomePage.jsx
+│   │   │   │   ├── HowItWorks.jsx
+│   │   │   │   ├── Services.jsx
+│   │   │   │
+│   │   │   ├── auth/
+│   │   │   │   ├── Login.jsx
+│   │   │   │   ├── Register.jsx
+│   │   │   │   └── ForgotPassword.jsx
+│   │   │   │
+│   │   │   ├── consult/
+│   │   │   │   ├── AppointmentModal.jsx
+│   │   │   │   ├── ConsultPage.jsx
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   ├── DoctorFilter.jsx
+│   │   │   │   ├── DoctorList.jsx
+│   │   │   │   ├── DoctorCard.jsx
+│   │   │   │   └── ChatOrVideoCall.jsx
+│   │   │   │
+│   │   │   ├── medicines/
+│   │   │   │   ├── MedicinesPage.jsx
+│   │   │   │   ├── MedicineCard.jsx
+│   │   │   │   ├── MedicineList.jsx
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   ├── CategoryFilter.jsx
+│   │   │   │   ├── CartPreview.jsx
+│   │   │   │   ├── PharmacySelector.jsx
+│   │   │   │   └── PrescriptionUpload.jsx
+│   │   │   │
+│   │   │   ├── tracker/
+│   │   │   │   ├── DeviceConnect.jsx
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   ├── HealthAlert.jsx
+│   │   │   │   ├── TrackerPage.jsx
+│   │   │   │   ├── VitalsCard.jsx
+│   │   │   │   ├── VitalsForm.jsx
+│   │   │   │   └── GraphView.jsx
+│   │   │   │
+│   │   │   ├── emergency/
+│   │   │   │   ├── EmergencyPage.jsx
+│   │   │   │   ├── EmergencyContacts.jsx
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   ├── NearbyHospitals.jsx
+│   │   │   │   ├── SOSButton.jsx
+│   │   │   │   └── LiveLocationShare.jsx
+│   │   │   │
+│   │   │   ├── profile/
+│   │   │   │   ├── Hero.jsx
+│   │   │   │   └── ProfilePage.jsx
+│   │   │   │
+│   │   │   │
+│   │   │   ├── dashboard/
+│   │   │   │   ├── admin/
+│   │   │   │   |   ├── AdminOverview.jsx
+│   │   │   │   |   ├── DoctorManagement.jsx
+│   │   │   │   |   ├── OrdersManagement.jsx
+│   │   │   │   |   ├── PharmacyManagement.jsx
+│   │   │   │   |   ├── ReportsAnalytics.jsx
+│   │   │   │   |   ├── UserManagement.jsx
+│   │   │   │   |   
+│   │   │   │   |   
+│   │   │   │   └── user/
+│   │   │   │       ├── DashboardOverview.jsx
+│   │   │   │       ├── HealthSummary.jsx
+│   │   │   │       ├── MyAppointments.jsx
+│   │   │   │       ├── MyOrders.jsx
+│   │   │   │       ├── Notifications.jsx
+│   │   │   │
+│   │   │   ├── settings/
+│   │   │   │   └── Settings.jsx
+│   │   │   │
+│   │   │   └── contact/
+│   │   │       |── ContactPage.jsx
+│   │   │       |── ContactForm.jsx
+│   │   │       |── ContactInfo.jsx
+│   │   │       |── ContactMap.jsx
+│   │   │       └── Hero.jsx
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   ├── app.css
+│   │   └── index.css
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
