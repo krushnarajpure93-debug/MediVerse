@@ -22,7 +22,7 @@ export default function DashboardOverview() {
       try {
         const token = localStorage.getItem("token");
         const response = await axiosInstance.get(
-          "http://localhost:8080/api/user/dashboard",
+          "http://localhost:5000/api/user/dashboard",
           {
             headers: {
               Authorization: `Bearer ${token}`,
