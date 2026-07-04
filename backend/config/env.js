@@ -12,19 +12,19 @@ const config = {
   jwtSecret: process.env.JWT_SECRET,
   jwtExpire: process.env.JWT_EXPIRE || "7d",
 
-  // Email
+  // Email (Optional)
   email: {
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    user: process.env.EMAIL_USER,
-    password: process.env.EMAIL_PASSWORD,
+    host: process.env.EMAIL_HOST || "",
+    port: process.env.EMAIL_PORT || 587,
+    user: process.env.EMAIL_USER || "",
+    password: process.env.EMAIL_PASSWORD || "",
   },
 
-  // Cloudinary
+  // Cloudinary (Optional)
   cloudinary: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME || "",
+    apiKey: process.env.CLOUDINARY_API_KEY || "",
+    apiSecret: process.env.CLOUDINARY_API_SECRET || "",
   },
 
   // Frontend
@@ -37,12 +37,10 @@ const config = {
   },
 };
 
-// Validate required env variables
+// Required variables
 const requiredEnvVars = [
   "MONGODB_URI",
   "JWT_SECRET",
-  "EMAIL_USER",
-  "EMAIL_PASSWORD",
 ];
 
 requiredEnvVars.forEach((varName) => {
