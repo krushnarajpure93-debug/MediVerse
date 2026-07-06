@@ -16,6 +16,14 @@ exports.createAppointment = asyncHandler(async (req, res) => {
     consultationType,
     symptoms,
     medicalHistory,
+    patientName,
+    doctorName,
+    hospital,
+    department,
+    status,
+    tokenNumber,
+    paymentStatus,
+    appointmentId,
   } = req.body;
 
   // Validate required fields
@@ -54,8 +62,15 @@ exports.createAppointment = asyncHandler(async (req, res) => {
     consultationType: consultationType || "video",
     symptoms,
     medicalHistory,
-    consultationFee: doctorDoc.consultationFee,
-    paymentStatus: "pending",
+    patientName: patientName || patient.name,
+    doctorName: doctorName || doctorDoc.user?.name || "Doctor",
+    hospital,
+    department,
+    status: status || "scheduled",
+    tokenNumber: tokenNumber || `TKN-${Date.now().toString().slice(-6)}`,
+    appointmentId: appointmentId || `APT-${Date.now().toString().slice(-6)}`,
+    consultationFee: doctorDoc.consultationFee || 0,
+    paymentStatus: paymentStatus || "pending",
   });
 
   // Populate appointment details

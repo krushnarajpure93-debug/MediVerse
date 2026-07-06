@@ -9,13 +9,36 @@ const { sendEmail, emailTemplates } = require("../utils/sendEmail");
 // @route   POST /api/auth/register
 // @access  Public
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, phone, password, role } = req.body;
+  const {
+    name,
+    fullName,
+    email,
+    phone,
+    password,
+    confirmPassword,
+    role,
+    district,
+    state,
+    age,
+    gender,
+    address,
+    profileImage,
+  } = req.body;
+
+  const userName = name || fullName;
 
   // Validate required fields
-  if (!name || !email || !phone || !password) {
+  if (!userName || !email || !phone || !password) {
     return res.status(400).json({
       success: false,
       message: "Please provide all required fields",
+    });
+  }
+
+  if (confirmPassword && confirmPassword !== password) {
+    return res.status(400).json({
+      success: false,
+      message: "Passwords do not match",
     });
   }
 
@@ -33,11 +56,17 @@ exports.register = asyncHandler(async (req, res) => {
 
   // Create user
   const user = await User.create({
-    name,
+    name: userName,
     email,
     phone,
     password,
     role: role || "user",
+    district,
+    state,
+    age,
+    gender,
+    address,
+    avatar: profileImage,
   });
 
   // Send welcome email
@@ -59,18 +88,21 @@ exports.register = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 exports.login = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, emailOrPhone, phone, mobile } = req.body;
+  const loginValue = email || emailOrPhone || phone || mobile;
 
   // Validate email & password
-  if (!email || !password) {
+  if (!loginValue || !password) {
     return res.status(400).json({
       success: false,
-      message: "Please provide email and password",
+      message: "Please provide email/mobile and password",
     });
   }
 
   // Check for user (include password)
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({
+    $or: [{ email: loginValue }, { phone: loginValue }],
+  }).select("+password");
 
   if (!user) {
     return res.status(401).json({

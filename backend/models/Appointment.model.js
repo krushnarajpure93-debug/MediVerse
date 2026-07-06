@@ -20,6 +20,24 @@ const appointmentSchema = new mongoose.Schema(
       type: String, // "10:00 AM"
       required: true,
     },
+    patientName: {
+      type: String,
+    },
+    doctorName: {
+      type: String,
+    },
+    hospital: {
+      type: String,
+    },
+    department: {
+      type: String,
+    },
+    tokenNumber: {
+      type: String,
+    },
+    appointmentId: {
+      type: String,
+    },
     consultationType: {
       type: String,
       enum: ["video", "chat", "in-person"],

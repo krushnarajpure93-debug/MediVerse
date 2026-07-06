@@ -12,6 +12,9 @@ const doctorRoutes = require("./routes/doctor.routes");
 const pharmacyRoutes = require("./routes/pharmacy.routes");
 const emergencyRoutes = require("./routes/emergency.routes");
 const appointmentRoutes = require("./routes/appointment.routes");
+const hospitalRoutes = require("./routes/hospital.routes");
+const busBookingRoutes = require("./routes/busBooking.routes");
+const hotelBookingRoutes = require("./routes/hotelBooking.routes");
 
 // Create Express app
 const app = express();
@@ -24,8 +27,24 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
 // CORS configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://localhost:5000",
+  "http://127.0.0.1:5000",
+].filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:5000",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS blocked"));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -42,6 +61,9 @@ app.use("/api/doctor", doctorRoutes);
 app.use("/api/pharmacy", pharmacyRoutes);
 app.use("/api/emergency", emergencyRoutes);
 app.use("/api/appointments", appointmentRoutes);
+app.use("/api/hospitals", hospitalRoutes);
+app.use("/api/bus-bookings", busBookingRoutes);
+app.use("/api/hotel-bookings", hotelBookingRoutes);
 
 /* =====================================================
    HEALTH CHECK
