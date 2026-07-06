@@ -11,11 +11,15 @@ export default function Navbar({ user, setUser }) {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Medicines", path: "/medicines" },
     { name: "Consult Doctor", path: "/consult" },
-    { name: "Health Tracker", path: "/tracker" },
-    { name: "Emergency", path: "/emergency", emergency: true },
+    { name: "Book Appointment", path: "/book-appointment" },
+    { name: "Order Medicines", path: "/medicines" },
+    { name: "Lab Tests", path: "/lab-tests" },
+    { name: "Health Articles", path: "/articles" },
+    { name: "FAQs", path: "/faq" },
     { name: "Contact", path: "/contact" },
+    { name: "About", path: "/about" },
+    { name: "Emergency", path: "/emergency", emergency: true },
   ];
 
   const handleLogout = async () => {
@@ -39,12 +43,11 @@ export default function Navbar({ user, setUser }) {
               to={link.path}
               className={({ isActive }) =>
                 `px-3 py-2 rounded-md font-medium transition
-                ${
-                  link.emergency
-                    ? "bg-red-600 text-white hover:bg-red-700"
-                    : isActive
-                      ? "bg-gray-700 text-yellow-400"
-                      : "text-gray-200 hover:bg-gray-800"
+                ${link.emergency
+                  ? "bg-red-600 text-white hover:bg-red-700"
+                  : isActive
+                    ? "bg-gray-700 text-yellow-400"
+                    : "text-gray-200 hover:bg-gray-800"
                 }`
               }
             >
@@ -150,12 +153,11 @@ export default function Navbar({ user, setUser }) {
             onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `block px-4 py-3 my-2 rounded-lg text-lg font-medium
-              ${
-                link.emergency
-                  ? "bg-red-600 text-white"
-                  : isActive
-                    ? "bg-yellow-100 text-gray-900"
-                    : "text-white hover:bg-gray-700"
+              ${link.emergency
+                ? "bg-red-600 text-white"
+                : isActive
+                  ? "bg-yellow-100 text-gray-900"
+                  : "text-white hover:bg-gray-700"
               }`
             }
           >

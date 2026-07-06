@@ -9,6 +9,13 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 
 import HomePage from "./pages/Home/HomePage";
 import ContactPage from "./pages/Contact/ContactPage";
+import AboutPage from "./pages/about/AboutPage";
+import FAQPage from "./pages/faq/FAQPage";
+import PrivacyPage from "./pages/legal/PrivacyPage";
+import TermsPage from "./pages/legal/TermsPage";
+import ArticlesPage from "./pages/articles/ArticlesPage";
+import LabTestsPage from "./pages/lab/LabTestsPage";
+import BookAppointmentPage from "./pages/appointment/BookAppointmentPage";
 
 // Core Modules
 import MedicinesPage from "./pages/medicines/MedicinesPage";
@@ -62,6 +69,13 @@ export default function App() {
             {/* Public */}
             <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/lab-tests" element={<LabTestsPage />} />
+            <Route path="/book-appointment" element={<BookAppointmentPage />} />
             {/* Core Health Features */}
             <Route path="/medicines" element={<MedicinesPage />} />
             <Route path="/consult" element={<ConsultPage />} />

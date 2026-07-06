@@ -1,35 +1,44 @@
 import { useState } from "react";
 import React from "react";
+import axios from "axios";
+
 export default function ContactForm() {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
+    subject: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
+    setError("");
 
-    setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-      setForm({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
+    try {
+      const response = await axios.post("http://localhost:5000/api/contact", form, {
+        withCredentials: true,
       });
-    }, 1000);
+
+      if (response.data?.success) {
+        setSuccess(true);
+        setForm({ name: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        setError(response.data?.message || "Unable to send message right now.");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Unable to send message right now.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,44 +48,64 @@ export default function ContactForm() {
           Send us a message
         </h2>
         <p className="text-center text-gray-500 mb-8">
-          We usually respond within 24 hours
+          We usually respond within 24 hours. Your message is saved in the backend and emailed to our team.
         </p>
 
         <form
           onSubmit={handleSubmit}
           className="bg-gray-50 p-8 rounded shadow-lg max-w-6xl mx-auto space-y-5"
         >
-          {/* First & Last Name */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">
-                First Name
-              </label>
+              <label className="block text-sm font-medium mb-1">Full Name</label>
               <input
-                name="firstName"
-                value={form.firstName}
+                name="name"
+                value={form.name}
                 onChange={handleChange}
                 required
                 className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-400 outline-none"
-                placeholder="First Name"
+                placeholder="Your full name"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">
-                Last Name
-              </label>
+              <label className="block text-sm font-medium mb-1">Subject</label>
               <input
-                name="lastName"
-                value={form.lastName}
+                name="subject"
+                value={form.subject}
                 onChange={handleChange}
                 required
                 className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-400 outline-none"
-                placeholder="Last Name"
+                placeholder="Appointment / Support / Other"
               />
             </div>
           </div>
 
-          {/* Email & Phone */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">Email</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-400 outline-none"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Phone</label>
+              <input
+                name="phone"
+                type="tel"
+                value={form.phone}
+                onChange={handleChange}
+                className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-400 outline-none"
+                placeholder="+91 9860894960"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Email</label>
@@ -129,6 +158,10 @@ export default function ContactForm() {
             <p className="text-green-600 text-center font-medium mt-2 animate-pulse">
               Message sent successfully ✅
             </p>
+          )}
+
+          {error && (
+            <p className="text-red-600 text-center font-medium mt-2">{error}</p>
           )}
         </form>
       </div>
